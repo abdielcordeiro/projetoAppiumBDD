@@ -12,7 +12,7 @@ public class Constant {
 
 	public static final String File_TestData = "BancoDados.xlsx";
 
-	/*
+	/**
 	 * Cadastrar novo Usuário
 	 */
 	public static final int Usuario = 0;
@@ -24,7 +24,7 @@ public class Constant {
 	public static final int Cidade = 6;
 
 
-	/*
+	/**
 	 * Busca por Produto
 	 */
 	public static final int NomeProduto = 1;

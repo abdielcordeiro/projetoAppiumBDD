@@ -4,10 +4,11 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 
+import br.com.rsinet.HUB_Appium.CucumberTest.TestContext;
+import br.com.rsinet.HUB_Appium.Managers.DriverManager;
 import br.com.rsinet.HUB_Appium.ScreenObject.PageBusca;
 import br.com.rsinet.HUB_Appium.ScreenObject.PageCadastro;
 import br.com.rsinet.HUB_Appium.Utility.Constant;
-import br.com.rsinet.HUB_Appium.Utility.DriverManager;
 import br.com.rsinet.HUB_Appium.Utility.ExcelUtils;
 import br.com.rsinet.HUB_Appium.Utility.MassaDados;
 import cucumber.api.java.After;
@@ -15,28 +16,35 @@ import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 
-public class TesteBuscaClique {
+public class BuscaCliqueStep {
 
-	private AndroidDriver<MobileElement> driver;
+	private AndroidDriver driver;
 	private PageBusca busca;
 	private TouchAction scroll;
 	private MassaDados dados;
 	private PageCadastro cadastro;
+	private TestContext testContext;
+
+	public BuscaCliqueStep(TestContext context){
+		testContext = context;
+	}
 
 	@Before
 	public void iniciaTeste() throws Exception {
-		driver = DriverManager.openApp(Constant.URL, Constant.Pacote, Constant.Ativador);
+
+		driver = testContext.getDriverManager().createDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	@Dado("^Que o usuário esteja na tela principal clique$")
 	public void que_o_usuário_esteja_na_tela_principal_clique() throws Throwable {
+
 		busca = new PageBusca(driver);
 		cadastro = new PageCadastro(driver);
+
 		scroll = new TouchAction(driver);
 		dados = new MassaDados();
 	}
@@ -48,6 +56,7 @@ public class TesteBuscaClique {
 		cadastro.clicarLogin();
 		busca.inserirLogin(dados.getNomeUsuarioExcel());
 		busca.inserirSenha(dados.getSenha());
+		driver.hideKeyboard();
 		busca.botaoLogar();
 		busca.clicarAutenticacaoDedo();
 	}
@@ -96,6 +105,6 @@ public class TesteBuscaClique {
 
 	@After
 	public void finalizaTeste() {
-		DriverManager.closeApp(driver);
+		DriverManager.closeDriver(driver);
 	}
 }

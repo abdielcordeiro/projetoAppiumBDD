@@ -17,11 +17,39 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>1.2.5</version>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/io.appium/java-client -->
 		<dependency>
 			<groupId>io.appium</groupId>
 			<artifactId>java-client</artifactId>
 			<version>7.3.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.relevantcodes</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>2.41.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/com.vimalselvam/cucumber-extentsreport -->
+		<dependency>
+			<groupId>com.vimalselvam</groupId>
+			<artifactId>cucumber-extentsreport</artifactId>
+			<version>2.0.2</version>
 		</dependency>
 
 		<dependency>
@@ -59,6 +87,6 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
-
+		
 	</dependencies>
 </project>

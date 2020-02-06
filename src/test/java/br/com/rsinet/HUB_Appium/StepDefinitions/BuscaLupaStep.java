@@ -4,9 +4,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 
+import br.com.rsinet.HUB_Appium.CucumberTest.TestContext;
+import br.com.rsinet.HUB_Appium.Managers.DriverManager;
 import br.com.rsinet.HUB_Appium.ScreenObject.PageBusca;
 import br.com.rsinet.HUB_Appium.Utility.Constant;
-import br.com.rsinet.HUB_Appium.Utility.DriverManager;
 import br.com.rsinet.HUB_Appium.Utility.ExcelUtils;
 import br.com.rsinet.HUB_Appium.Utility.MassaDados;
 import cucumber.api.java.After;
@@ -18,16 +19,23 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 
-public class TesteBuscaLupa {
+public class BuscaLupaStep {
 
 	private AndroidDriver<MobileElement> driver;
 	private PageBusca busca;
 	private TouchAction scroll;
 	private MassaDados dados;
+	private TestContext testContext;
+
+
+	public BuscaLupaStep(TestContext context){
+		testContext = context;
+	}
 
 	@Before
 	public void iniciaTeste() throws Exception {
-		driver = DriverManager.openApp(Constant.URL, Constant.Pacote, Constant.Ativador);
+
+		driver = testContext.getDriverManager().createDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
@@ -79,7 +87,7 @@ public class TesteBuscaLupa {
 
 	@After
 	public void encerraTeste() {
-		DriverManager.closeApp(driver);
+		DriverManager.closeDriver(driver);
 	}
 
 }

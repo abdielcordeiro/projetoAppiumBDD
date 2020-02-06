@@ -7,7 +7,7 @@ Funcionalidade: Ação de Cadastrar um Usuário no aplicativo
     Quando Navega para o login
     E clicar em cadastrar novo usuário
 
-  @Sucesso
+  @Sucesso @Cadastro
   Cenário: Cadastrar um usuário com sucesso
     Dado preenche formulario de cadastro sucesso
     E Clica no botão de registrar

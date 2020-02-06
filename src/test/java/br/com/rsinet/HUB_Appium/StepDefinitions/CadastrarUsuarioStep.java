@@ -4,9 +4,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 
+import br.com.rsinet.HUB_Appium.CucumberTest.TestContext;
+import br.com.rsinet.HUB_Appium.Managers.DriverManager;
 import br.com.rsinet.HUB_Appium.ScreenObject.PageCadastro;
 import br.com.rsinet.HUB_Appium.Utility.Constant;
-import br.com.rsinet.HUB_Appium.Utility.DriverManager;
 import br.com.rsinet.HUB_Appium.Utility.ExcelUtils;
 import br.com.rsinet.HUB_Appium.Utility.MassaDados;
 import cucumber.api.java.After;
@@ -19,25 +20,32 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.offset.PointOption;
 
-public class TesteCadastrarUsuario {
+public class CadastrarUsuarioStep {
 
 	private AndroidDriver<MobileElement> driver;
 	private PageCadastro cadastro;
 	private TouchAction scroll;
 	private MassaDados dados;
+	private TestContext testContext;
+
+	public CadastrarUsuarioStep(TestContext context){
+		testContext = context;
+	}
+
 
 	@Before
 	public void iniciaTeste() throws Exception {
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData, "Cadastro");
-		dados = new MassaDados();
+
+		driver = testContext.getDriverManager().createDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
 	}
 
 	@Dado("^O usuário esta home do aplicativo para cadastrar$")
 	public void o_usuário_esta_home_do_aplicativo_para_cadastrar() throws Exception {
 
-		driver = DriverManager.openApp(Constant.URL, Constant.Pacote, Constant.Ativador);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData, "Cadastro");
+		dados = new MassaDados();
 		cadastro = new PageCadastro(driver);
 		scroll = new TouchAction(driver);
 	}
@@ -145,6 +153,6 @@ public class TesteCadastrarUsuario {
 
 	@After
 	public void finalizaTeste() {
-		DriverManager.closeApp(driver);
+		DriverManager.closeDriver(driver);
 	}
 }

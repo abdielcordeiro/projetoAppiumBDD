@@ -1,7 +1,5 @@
 package br.com.rsinet.HUB_Appium.ScreenObject;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -44,7 +42,7 @@ public class PageBusca {
 	}
 
 	private MobileElement verificarNomeProduto(String nome) {
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.textToBePresentInElement(
 				driver.findElementById("com.Advantage.aShopping:id/textViewProductName"), nome));
 
@@ -157,11 +155,11 @@ public class PageBusca {
 		return el2;
 	}
 
+	/**
+	 * Corrigir o Thread Sleep
+	 */
 	public void clicarAutenticacaoDedo() throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		WebDriverWait wait = new WebDriverWait(driver, 40);
-		wait.until(ExpectedConditions.elementToBeClickable(bntDedo()));
-		// Thread.sleep(1000);
+		Thread.sleep(1000);
 		bntDedo().click();
 	}
 
