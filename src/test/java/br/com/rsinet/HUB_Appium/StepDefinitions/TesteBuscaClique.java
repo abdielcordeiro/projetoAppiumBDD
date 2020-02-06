@@ -4,8 +4,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 
-import br.com.rsinet.HUB_Appium.PageObject.PageBusca;
-import br.com.rsinet.HUB_Appium.PageObject.PageCadastro;
+import br.com.rsinet.HUB_Appium.ScreenObject.PageBusca;
+import br.com.rsinet.HUB_Appium.ScreenObject.PageCadastro;
 import br.com.rsinet.HUB_Appium.Utility.Constant;
 import br.com.rsinet.HUB_Appium.Utility.DriverManager;
 import br.com.rsinet.HUB_Appium.Utility.ExcelUtils;

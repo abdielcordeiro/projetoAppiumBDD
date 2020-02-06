@@ -1,4 +1,4 @@
-package br.com.rsinet.HUB_Appium.PageObject;
+package br.com.rsinet.HUB_Appium.ScreenObject;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
