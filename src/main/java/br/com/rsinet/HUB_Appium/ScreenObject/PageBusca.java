@@ -188,4 +188,11 @@ public class PageBusca {
 				.click();
 	}
 
+	public void scrollVisible(String esperado) {
+		driver.findElementByAndroidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
+						+ esperado + "\").instance(0))");
+	}
+
+
 }

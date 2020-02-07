@@ -11,20 +11,19 @@ import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 
 public class BuscaLupaStep {
 
 	private AndroidDriver<MobileElement> driver;
 	private PageBusca busca;
-	private TouchAction scroll;
 	private MassaDados dados;
 	private TestContext testContext;
 
 
-	public BuscaLupaStep(TestContext context){
+	public BuscaLupaStep(TestContext context) throws Exception{
 		testContext = context;
+		driver = testContext.getDriverManager().createDriver();
 	}
 
 	@Dado("^Que o usuário esteja na tela principal$")
@@ -32,7 +31,6 @@ public class BuscaLupaStep {
 		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData, "Pesquisa");
 		dados = new MassaDados();
 		busca = new PageBusca(driver);
-		scroll = new TouchAction(driver);
 	}
 
 	@Quando("^Clica no botão da lupa$")

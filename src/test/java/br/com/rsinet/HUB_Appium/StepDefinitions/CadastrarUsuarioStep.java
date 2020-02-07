@@ -11,15 +11,12 @@ import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.touch.offset.PointOption;
 
 public class CadastrarUsuarioStep {
 
 	private AndroidDriver<MobileElement> driver;
 	private PageCadastro cadastro;
-	private TouchAction scroll;
 	private MassaDados dados;
 	private TestContext testContext;
 
@@ -34,7 +31,6 @@ public class CadastrarUsuarioStep {
 		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData, "Cadastro");
 		dados = new MassaDados();
 		cadastro = new PageCadastro(driver);
-		scroll = new TouchAction(driver);
 	}
 
 	@Quando("^Navega para o login$")
@@ -57,19 +53,18 @@ public class CadastrarUsuarioStep {
 		cadastro.preencherEmail(dados.getEmail());
 		cadastro.preencherSenha(dados.getSenha());
 
-		scroll.press(PointOption.point(1040, 1143)).moveTo(PointOption.point(1038, 419)).perform();
-
+		driver.hideKeyboard();
 		cadastro.preencherConfirmacaoSenha(dados.getSenha());
 
-		scroll.press(PointOption.point(1040, 1143)).moveTo(PointOption.point(1038, 419)).perform();
+		driver.hideKeyboard();
+		cadastro.scrollVisible("ADDRESS");
 
 		cadastro.preencherPrimeiroNome(dados.getPrimeiroNome());
 		cadastro.preencherUltimoNome(dados.getUltimoNome());
 		cadastro.preencherNumeroTelefone(dados.getNumeroTelefone());
 
-		scroll.press(PointOption.point(1040, 1143)).moveTo(PointOption.point(1038, 419)).perform();
-
 		driver.hideKeyboard();
+		cadastro.scrollVisible("REGISTER");
 
 		cadastro.clicarLocalizacao();
 		cadastro.clicarConfirmaLocalizacao();
@@ -77,9 +72,6 @@ public class CadastrarUsuarioStep {
 
 		cadastro.clicarPais();
 		cadastro.scrollAndClick("Brazil");
-
-		cadastro.clicarConfirmaPais();
-
 	}
 
 	@Dado("^Clica no botão de registrar$")
@@ -97,42 +89,36 @@ public class CadastrarUsuarioStep {
 	@Dado("^preenche formulario de cadastro falha$")
 	public void preenche_formulario_de_cadastro_falha() throws Exception {
 
-		cadastro.preencherNomeDeUsuario(dados.getNomeUsuario(16));
+		String nomeUsuario = dados.getNomeUsuario(16);
+		cadastro.preencherNomeDeUsuario(nomeUsuario);
 		cadastro.preencherEmail(dados.getEmail());
 		cadastro.preencherSenha(dados.getSenha());
 
-		scroll.press(PointOption.point(1040, 1143)).moveTo(PointOption.point(1038, 419)).perform();
-		cadastro.scrollAndClick("CONFIRM PASSWORD");
-
+		driver.hideKeyboard();
 		cadastro.preencherConfirmacaoSenha(dados.getSenha());
 
-		scroll.press(PointOption.point(1040, 1143)).moveTo(PointOption.point(1038, 419)).perform();
-		cadastro.scrollAndClick("ADDRESS");
+		driver.hideKeyboard();
+		cadastro.scrollVisible("ADDRESS");
 
 		cadastro.preencherPrimeiroNome(dados.getPrimeiroNome());
 		cadastro.preencherUltimoNome(dados.getUltimoNome());
 		cadastro.preencherNumeroTelefone(dados.getNumeroTelefone());
 
-		scroll.press(PointOption.point(1040, 1143)).moveTo(PointOption.point(1038, 419)).perform();
-		cadastro.scrollAndClick("ZIP");
-
 		driver.hideKeyboard();
+		cadastro.scrollVisible("REGISTER");
 
 		cadastro.clicarLocalizacao();
 		cadastro.clicarConfirmaLocalizacao();
-		//cadastro.preencherCidade(dados.getCidade());
+		cadastro.preencherCidade(dados.getCidade());
 
 		cadastro.clicarPais();
 		cadastro.scrollAndClick("Brazil");
-		cadastro.clicarConfirmaPais();
 
 	}
 
 	@Então("^valida mensagem de usuário incorreto$")
 	public void valida_mensagem_de_usuário_incorreto() {
-		scroll.press(PointOption.point(1038, 266)).moveTo(PointOption.point(1019, 1690)).perform();
-		scroll.press(PointOption.point(1038, 266)).moveTo(PointOption.point(1019, 1690)).perform();
-
+		cadastro.scrollVisible("ACCOUNT DETAILS");
 		Assert.assertTrue("Falha no nome de usuário", cadastro.validaUsuarioErrado().equals("Use up to 15 characters"));
 	}
 }

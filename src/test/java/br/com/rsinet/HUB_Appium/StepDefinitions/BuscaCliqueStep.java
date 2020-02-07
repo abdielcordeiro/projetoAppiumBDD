@@ -11,20 +11,19 @@ import br.com.rsinet.HUB_Appium.Utility.MassaDados;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 
 public class BuscaCliqueStep {
 
 	private AndroidDriver driver;
 	private PageBusca busca;
-	private TouchAction scroll;
 	private MassaDados dados;
 	private PageCadastro cadastro;
 	private TestContext testContext;
 
-	public BuscaCliqueStep(TestContext context) {
+	public BuscaCliqueStep(TestContext context) throws Exception {
 		testContext = context;
+		driver = testContext.getDriverManager().createDriver();
 	}
 
 	@Dado("^Que o usuário esteja na tela principal clique$")
@@ -32,8 +31,6 @@ public class BuscaCliqueStep {
 
 		busca = new PageBusca(driver);
 		cadastro = new PageCadastro(driver);
-
-		scroll = new TouchAction(driver);
 		dados = new MassaDados();
 	}
 

@@ -31,9 +31,9 @@ public class DriverManager {
 
 	public AndroidDriver<MobileElement> closeDriver() {
 		if (driver != null) {
-			driver.close();
+			driver.quit();
 		}
-		return driver = null;
+		return driver;
 	}
 
 }

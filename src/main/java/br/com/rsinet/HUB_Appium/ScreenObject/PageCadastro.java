@@ -82,7 +82,7 @@ public class PageCadastro {
 	private MobileElement inserirConfirmacaoSenha() {
 		List<MobileElement> els1 = driver.findElementsByXPath(
 				"//android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.EditText");
-		return els1.get(2);
+		return els1.get(3);
 	}
 
 	public void preencherConfirmacaoSenha(String confirmaSenha) {
@@ -91,9 +91,8 @@ public class PageCadastro {
 	}
 
 	private MobileElement inserirPrimeiroNome() {
-		MobileElement primeiroNome = driver.findElementByXPath(
-				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.EditText");
-		return primeiroNome;
+		List<MobileElement> els1 = driver.findElementsByXPath("//android.widget.RelativeLayout[1]/android.widget.EditText");
+		return els1.get(0);
 	}
 
 	public void preencherPrimeiroNome(String primeiroNome) {
@@ -102,9 +101,8 @@ public class PageCadastro {
 	}
 
 	private MobileElement inserirUltimoNome() {
-		MobileElement ultimoNome = driver.findElementByXPath(
-				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.EditText");
-		return ultimoNome;
+		List<MobileElement> els1 = driver.findElementsByXPath("//android.widget.RelativeLayout[2]/android.widget.EditText");
+		return els1.get(0);
 	}
 
 	public void preencherUltimoNome(String ultimoNome) {
@@ -113,10 +111,8 @@ public class PageCadastro {
 	}
 
 	private MobileElement inserirNumeroTelefone() {
-		MobileElement numeroTelefone = driver.findElementByXPath(
-				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.EditText");
-
-		return numeroTelefone;
+		List<MobileElement> els1 = driver.findElementsByXPath("//android.widget.RelativeLayout/android.widget.EditText");
+		return els1.get(2);
 	}
 
 	public void preencherNumeroTelefone(String numero) {
@@ -207,5 +203,12 @@ public class PageCadastro {
 						+ esperado + "\").instance(0))")
 				.click();
 	}
+
+	public void scrollVisible(String esperado) {
+		driver.findElementByAndroidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
+						+ esperado + "\").instance(0))");
+	}
+
 
 }
