@@ -22,7 +22,7 @@ public class PageCadastro {
 	}
 
 	public void clicarMenu() {
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, 40);
 		wait.until(ExpectedConditions.elementToBeClickable(botaoMenu()));
 		botaoMenu().click();
 	}

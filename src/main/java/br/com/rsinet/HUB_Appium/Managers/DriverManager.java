@@ -9,6 +9,7 @@ import br.com.rsinet.HUB_Appium.Utility.Constant;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
+
 public class DriverManager {
 
 	private AndroidDriver<MobileElement> driver;
