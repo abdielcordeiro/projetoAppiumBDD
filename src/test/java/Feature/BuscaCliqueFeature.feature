@@ -4,8 +4,8 @@ Funcionalidade: Ação de buscar um produto por clique
 
   Contexto: 
     Dado Que o usuário esteja na tela principal clique
-    E faz login
-    Quando Clica em uma categoria
+    Quando faz login
+    E Clica em uma categoria
     E Clica no produto desejado
 
   @Sucesso @TesteClique

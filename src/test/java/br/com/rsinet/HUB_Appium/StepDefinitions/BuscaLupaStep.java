@@ -1,17 +1,12 @@
 package br.com.rsinet.HUB_Appium.StepDefinitions;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.Assert;
 
 import br.com.rsinet.HUB_Appium.CucumberTest.TestContext;
-import br.com.rsinet.HUB_Appium.Managers.DriverManager;
 import br.com.rsinet.HUB_Appium.ScreenObject.PageBusca;
 import br.com.rsinet.HUB_Appium.Utility.Constant;
 import br.com.rsinet.HUB_Appium.Utility.ExcelUtils;
 import br.com.rsinet.HUB_Appium.Utility.MassaDados;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
@@ -30,13 +25,6 @@ public class BuscaLupaStep {
 
 	public BuscaLupaStep(TestContext context){
 		testContext = context;
-	}
-
-	@Before
-	public void iniciaTeste() throws Exception {
-
-		driver = testContext.getDriverManager().createDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	@Dado("^Que o usuário esteja na tela principal$")
@@ -83,11 +71,6 @@ public class BuscaLupaStep {
 	public void valida_mensagem_de_produto_não_encontrado() throws Throwable {
 		Assert.assertTrue("Produto: " + dados.getNomeProdutoFalha() + "  não encontrado",
 				busca.mensagemDeErro().equals("- No results for " + "\"" + dados.getNomeProdutoFalha() + "\" -"));
-	}
-
-	@After
-	public void encerraTeste() {
-		DriverManager.closeDriver(driver);
 	}
 
 }

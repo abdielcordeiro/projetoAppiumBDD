@@ -1,18 +1,13 @@
 package br.com.rsinet.HUB_Appium.StepDefinitions;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.Assert;
 
 import br.com.rsinet.HUB_Appium.CucumberTest.TestContext;
-import br.com.rsinet.HUB_Appium.Managers.DriverManager;
 import br.com.rsinet.HUB_Appium.ScreenObject.PageBusca;
 import br.com.rsinet.HUB_Appium.ScreenObject.PageCadastro;
 import br.com.rsinet.HUB_Appium.Utility.Constant;
 import br.com.rsinet.HUB_Appium.Utility.ExcelUtils;
 import br.com.rsinet.HUB_Appium.Utility.MassaDados;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
@@ -28,15 +23,8 @@ public class BuscaCliqueStep {
 	private PageCadastro cadastro;
 	private TestContext testContext;
 
-	public BuscaCliqueStep(TestContext context){
+	public BuscaCliqueStep(TestContext context) {
 		testContext = context;
-	}
-
-	@Before
-	public void iniciaTeste() throws Exception {
-
-		driver = testContext.getDriverManager().createDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	@Dado("^Que o usuário esteja na tela principal clique$")
@@ -101,10 +89,5 @@ public class BuscaCliqueStep {
 	public void valida_a_quantidade_de_produtos() throws Throwable {
 		Assert.assertTrue("Quantidade diferente da quantidade pedida",
 				busca.validarQuantidadeProduto() != dados.getQuantidadeProduto());
-	}
-
-	@After
-	public void finalizaTeste() {
-		DriverManager.closeDriver(driver);
 	}
 }

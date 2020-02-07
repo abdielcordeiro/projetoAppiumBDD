@@ -1,4 +1,4 @@
-package br.com.rsinet.HUB_Appium.CucumberTest;
+package br.com.rsinet.hub.appium.Test;
 
 import java.io.File;
 
@@ -12,21 +12,22 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
 import cucumber.api.junit.Cucumber;
 
+/**Configurações do Cucumber
+*/
 @RunWith(Cucumber.class)
-@CucumberOptions(// Configurações do Cucumber
-		features = "classpath:Feature", // configuração do pacote que contém as features
-		glue = "br.com.rsinet.HUB_Appium.StepDefinitions", // configuração do pacote que contém minhas step
-		plugin = {"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/resultados.html" }, // Plugin responsavel por criar o arquivo do reporte
+@CucumberOptions(
+		features = "classpath:Feature", //Configuração do pacote que contém as features
+		glue = "br.com.rsinet.HUB_Appium.StepDefinitions", //Configuração do pacote que contém minhas step
+		plugin = {"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/resultados.html" }, //Plugin responsavel por criar o arquivo do reporte
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,
 		dryRun = false,
-		tags = {"@Cadastro"} // Configurações das anotações que devem ser executadas
+		tags = {"@Cadastro"} //Configurações das anotações que devem ser executadas
 )
 
 public class TestRunner {
 	@AfterClass
 	public static void writeExtentReport() {
 		Reporter.loadXMLConfig(new File(FileReaderManager.getInstance().getConfigReader().getReportConfigPath()));
-
 	}
 }

@@ -29,10 +29,11 @@ public class DriverManager {
 		return driver;
 	}
 
-	public static void closeDriver(AndroidDriver<MobileElement> driver) {
+	public AndroidDriver<MobileElement> closeDriver() {
 		if (driver != null) {
 			driver.close();
 		}
+		return driver = null;
 	}
 
 }

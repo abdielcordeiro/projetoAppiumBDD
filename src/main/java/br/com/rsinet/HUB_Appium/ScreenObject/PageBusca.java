@@ -181,4 +181,11 @@ public class PageBusca {
 		return Integer.parseInt(validaQnt().getText());
 	}
 
+	public void scrollAndClick(String esperado) {
+		driver.findElementByAndroidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
+						+ esperado + "\").instance(0))")
+				.click();
+	}
+
 }

@@ -1,17 +1,12 @@
 package br.com.rsinet.HUB_Appium.StepDefinitions;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.Assert;
 
 import br.com.rsinet.HUB_Appium.CucumberTest.TestContext;
-import br.com.rsinet.HUB_Appium.Managers.DriverManager;
 import br.com.rsinet.HUB_Appium.ScreenObject.PageCadastro;
 import br.com.rsinet.HUB_Appium.Utility.Constant;
 import br.com.rsinet.HUB_Appium.Utility.ExcelUtils;
 import br.com.rsinet.HUB_Appium.Utility.MassaDados;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
@@ -28,17 +23,9 @@ public class CadastrarUsuarioStep {
 	private MassaDados dados;
 	private TestContext testContext;
 
-	public CadastrarUsuarioStep(TestContext context){
+	public CadastrarUsuarioStep(TestContext context) throws Exception {
 		testContext = context;
-	}
-
-
-	@Before
-	public void iniciaTeste() throws Exception {
-
 		driver = testContext.getDriverManager().createDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
 	}
 
 	@Dado("^O usuário esta home do aplicativo para cadastrar$")
@@ -89,10 +76,7 @@ public class CadastrarUsuarioStep {
 		cadastro.preencherCidade(dados.getCidade());
 
 		cadastro.clicarPais();
-
-		scroll.press(PointOption.point(922, 1612)).moveTo(PointOption.point(967, 274)).perform();
-		scroll.press(PointOption.point(922, 1612)).moveTo(PointOption.point(943, 274)).perform();
-		scroll.press(PointOption.point(922, 1612)).moveTo(PointOption.point(943, 274)).perform();
+		cadastro.scrollAndClick("Brazil");
 
 		cadastro.clicarConfirmaPais();
 
@@ -106,7 +90,8 @@ public class CadastrarUsuarioStep {
 	@Então("^Valida usuário cadastrardo com sucesso$")
 	public void valida_usuário_cadastrardo_com_sucesso() throws Exception {
 		cadastro.clicarMenu();
-		Assert.assertTrue("Usuário cadastrado com sucesso", cadastro.validaCadastro().equals(dados.getNomeUsuarioExcel()));
+		Assert.assertTrue("Usuário cadastrado com sucesso",
+				cadastro.validaCadastro().equals(dados.getNomeUsuarioExcel()));
 	}
 
 	@Dado("^preenche formulario de cadastro falha$")
@@ -117,28 +102,28 @@ public class CadastrarUsuarioStep {
 		cadastro.preencherSenha(dados.getSenha());
 
 		scroll.press(PointOption.point(1040, 1143)).moveTo(PointOption.point(1038, 419)).perform();
+		cadastro.scrollAndClick("CONFIRM PASSWORD");
 
 		cadastro.preencherConfirmacaoSenha(dados.getSenha());
 
 		scroll.press(PointOption.point(1040, 1143)).moveTo(PointOption.point(1038, 419)).perform();
+		cadastro.scrollAndClick("ADDRESS");
 
 		cadastro.preencherPrimeiroNome(dados.getPrimeiroNome());
 		cadastro.preencherUltimoNome(dados.getUltimoNome());
 		cadastro.preencherNumeroTelefone(dados.getNumeroTelefone());
 
 		scroll.press(PointOption.point(1040, 1143)).moveTo(PointOption.point(1038, 419)).perform();
+		cadastro.scrollAndClick("ZIP");
 
 		driver.hideKeyboard();
 
 		cadastro.clicarLocalizacao();
 		cadastro.clicarConfirmaLocalizacao();
-		cadastro.preencherCidade(dados.getCidade());
+		//cadastro.preencherCidade(dados.getCidade());
 
 		cadastro.clicarPais();
-
-		scroll.press(PointOption.point(922, 1612)).moveTo(PointOption.point(967, 274)).perform();
-		scroll.press(PointOption.point(922, 1612)).moveTo(PointOption.point(943, 274)).perform();
-
+		cadastro.scrollAndClick("Brazil");
 		cadastro.clicarConfirmaPais();
 
 	}
@@ -149,10 +134,5 @@ public class CadastrarUsuarioStep {
 		scroll.press(PointOption.point(1038, 266)).moveTo(PointOption.point(1019, 1690)).perform();
 
 		Assert.assertTrue("Falha no nome de usuário", cadastro.validaUsuarioErrado().equals("Use up to 15 characters"));
-	}
-
-	@After
-	public void finalizaTeste() {
-		DriverManager.closeDriver(driver);
 	}
 }
