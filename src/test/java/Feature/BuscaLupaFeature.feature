@@ -7,13 +7,13 @@ Funcionalidade: Ação de buscar um produto na lupa
     Dado Que o usuário esteja na tela principal
     Quando Clica no botão da lupa
 
-  @Sucesso 
+  @Sucesso @Buscar
   Cenário: Buscar um produto na lupa com Sucesso
     E Digita nome do produto existente 
     E Clica na lupa para buscar Sucesso
     Então busca realizada com sucesso produto encontrado
 
-  @Falha 
+  @Falha @Buscar
   Cenário: Buscar um produto que não exista
     E Digita o nome do tipo do produto inexistente
     E Clica na lupa para buscar falha

@@ -11,11 +11,12 @@ import br.com.rsinet.HUB_Appium.Utility.MassaDados;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
 public class BuscaCliqueStep {
 
-	private AndroidDriver driver;
+	private AndroidDriver<MobileElement> driver;
 	private PageBusca busca;
 	private MassaDados dados;
 	private PageCadastro cadastro;

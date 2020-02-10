@@ -16,11 +16,12 @@ import br.com.rsinet.HUB_Appium.CucumberTest.TestContext;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
 public class Hooks {
 
-	private AndroidDriver driver;
+	private AndroidDriver<MobileElement> driver;
 	private TestContext testContext;
 
 	public Hooks(TestContext context) {

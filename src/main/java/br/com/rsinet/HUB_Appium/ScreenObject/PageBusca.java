@@ -42,7 +42,7 @@ public class PageBusca {
 	}
 
 	private MobileElement verificarNomeProduto(String nome) {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 40);
 		wait.until(ExpectedConditions.textToBePresentInElement(
 				driver.findElementById("com.Advantage.aShopping:id/textViewProductName"), nome));
 
@@ -68,7 +68,8 @@ public class PageBusca {
 		return el2;
 	}
 
-	public void selecionaTipo(String tipo) {
+	public void selecionaTipo(String tipo) throws InterruptedException {
+		Thread.sleep(1000);
 		escolherTipo(tipo).click();
 	}
 
