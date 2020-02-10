@@ -8,7 +8,7 @@ Funcionalidade: Ação de buscar um produto por clique
     E Clica em uma categoria
     E Clica no produto desejado
 
-  @Sucesso 
+  @SucessoClique 
   Cenário: Buscar um produto por clique com Sucesso
     Então Valida produto encontrado com sucesso
 

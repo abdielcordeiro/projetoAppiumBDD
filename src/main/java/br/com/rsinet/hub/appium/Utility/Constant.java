@@ -8,7 +8,7 @@ public class Constant {
 
 	public static final String Ativador = ".SplashActivity";
 
-	public static final String Path_TestData = "..\\projetoAppiumBDD\\src\\main\\java\\br\\com\\rsinet\\HUB_Appium\\TestData\\";
+	public static final String Path_TestData = "..\\projetoAppiumBDD\\src\\main\\java\\br\\com\\rsinet\\hub\\appium\\TestData\\";
 
 	public static final String File_TestData = "BancoDados.xlsx";
 

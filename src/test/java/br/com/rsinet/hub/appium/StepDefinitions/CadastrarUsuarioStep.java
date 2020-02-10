@@ -19,6 +19,7 @@ public class CadastrarUsuarioStep {
 	private PageCadastro cadastro;
 	private MassaDados dados;
 	private TestContext testContext;
+	private String nomeUsuario;
 
 	public CadastrarUsuarioStep(TestContext context) throws Exception {
 		testContext = context;
@@ -47,8 +48,7 @@ public class CadastrarUsuarioStep {
 	@Dado("^preenche formulario de cadastro sucesso$")
 	public void preenche_formulario_de_cadastro_sucesso() throws Exception {
 
-		String nomeUsuario = dados.getNomeUsuario(6);
-		dados.setNomeUsuario(nomeUsuario);
+		nomeUsuario = dados.getNomeUsuario(6);
 		cadastro.preencherNomeDeUsuario(nomeUsuario);
 		cadastro.preencherEmail(dados.getEmail());
 		cadastro.preencherSenha(dados.getSenha());
@@ -57,14 +57,20 @@ public class CadastrarUsuarioStep {
 		cadastro.preencherConfirmacaoSenha(dados.getSenha());
 
 		driver.hideKeyboard();
-		cadastro.scrollVisible("ADDRESS");
 
 		cadastro.preencherPrimeiroNome(dados.getPrimeiroNome());
 		cadastro.preencherUltimoNome(dados.getUltimoNome());
+
+		driver.hideKeyboard();
+
+		cadastro.scroll(0.9, 0.0);
+
+		driver.hideKeyboard();
+
 		cadastro.preencherNumeroTelefone(dados.getNumeroTelefone());
 
 		driver.hideKeyboard();
-		cadastro.scrollVisible("REGISTER");
+		cadastro.scroll(0.9, 0.0);
 
 		cadastro.clicarLocalizacao();
 		cadastro.clicarConfirmaLocalizacao();
@@ -82,14 +88,15 @@ public class CadastrarUsuarioStep {
 	@Então("^Valida usuário cadastrardo com sucesso$")
 	public void valida_usuário_cadastrardo_com_sucesso() throws Exception {
 		cadastro.clicarMenu();
+		dados.setNomeUsuario(nomeUsuario);
 		Assert.assertTrue("Usuário cadastrado com sucesso",
-				cadastro.validaCadastro().equals(dados.getNomeUsuarioExcel()));
+				cadastro.validaCadastro().equals(dados.getNomeUsuarioExcel()));	
 	}
 
 	@Dado("^preenche formulario de cadastro falha$")
 	public void preenche_formulario_de_cadastro_falha() throws Exception {
 
-		String nomeUsuario = dados.getNomeUsuario(16);
+		nomeUsuario = dados.getNomeUsuario(16);
 		cadastro.preencherNomeDeUsuario(nomeUsuario);
 		cadastro.preencherEmail(dados.getEmail());
 		cadastro.preencherSenha(dados.getSenha());
@@ -98,14 +105,20 @@ public class CadastrarUsuarioStep {
 		cadastro.preencherConfirmacaoSenha(dados.getSenha());
 
 		driver.hideKeyboard();
-		cadastro.scrollVisible("ADDRESS");
 
 		cadastro.preencherPrimeiroNome(dados.getPrimeiroNome());
 		cadastro.preencherUltimoNome(dados.getUltimoNome());
+
+		driver.hideKeyboard();
+
+		cadastro.scroll(0.9, 0.0);
+
+		driver.hideKeyboard();
+
 		cadastro.preencherNumeroTelefone(dados.getNumeroTelefone());
 
 		driver.hideKeyboard();
-		cadastro.scrollVisible("REGISTER");
+		cadastro.scroll(0.9, 0.0);
 
 		cadastro.clicarLocalizacao();
 		cadastro.clicarConfirmaLocalizacao();

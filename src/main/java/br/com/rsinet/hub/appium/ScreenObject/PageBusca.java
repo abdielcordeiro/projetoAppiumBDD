@@ -69,7 +69,7 @@ public class PageBusca {
 	}
 
 	public void selecionaTipo(String tipo) throws InterruptedException {
-		Thread.sleep(1000);
+		// Thread.sleep(1000);
 		escolherTipo(tipo).click();
 	}
 
@@ -148,11 +148,15 @@ public class PageBusca {
 	}
 
 	public void botaoLogar() {
-		bntLogar().click();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		wait.until(ExpectedConditions.elementToBeClickable(bntLogar())).click();
+
 	}
 
 	private MobileElement bntDedo() {
 		MobileElement el2 = driver.findElementById("android:id/button2");
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOf(el2));
 		return el2;
 	}
 
@@ -160,8 +164,13 @@ public class PageBusca {
 	 * Corrigir o Thread Sleep
 	 */
 	public void clicarAutenticacaoDedo() throws InterruptedException {
-		Thread.sleep(1000);
-		bntDedo().click();
+		System.out.println(bntDedo().getText());
+		if (bntDedo().getText().equals("NO")) {
+			bntDedo().click();
+		} else {
+			System.out.println("Botao inexistente");
+		}
+
 	}
 
 	private MobileElement bntEntrarCarinho() {
@@ -181,18 +190,4 @@ public class PageBusca {
 	public int validarQuantidadeProduto() {
 		return Integer.parseInt(validaQnt().getText());
 	}
-
-	public void scrollAndClick(String esperado) {
-		driver.findElementByAndroidUIAutomator(
-				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
-						+ esperado + "\").instance(0))")
-				.click();
-	}
-
-	public void scrollVisible(String esperado) {
-		driver.findElementByAndroidUIAutomator(
-				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
-						+ esperado + "\").instance(0))");
-	}
-
 }

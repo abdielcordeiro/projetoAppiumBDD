@@ -1,12 +1,18 @@
 package br.com.rsinet.hub.appium.ScreenObject;
 
+import java.time.Duration;
 import java.util.List;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.PerformsTouchActions;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 
 public class PageCadastro {
 
@@ -16,14 +22,21 @@ public class PageCadastro {
 		this.driver = driver;
 	}
 
+	private MobileElement esperaCadastrar() {
+		MobileElement el1 = (MobileElement) driver.findElementByXPath(
+				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.ImageView");
+		return el1;
+	}
+
 	private MobileElement botaoMenu() {
 		MobileElement bntMenu = driver.findElementById("com.Advantage.aShopping:id/imageViewMenu");
 		return bntMenu;
 	}
 
-	public void clicarMenu() {
-		WebDriverWait wait = new WebDriverWait(driver, 40);
-		wait.until(ExpectedConditions.elementToBeClickable(botaoMenu()));
+	public void clicarMenu() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.visibilityOf(esperaCadastrar()));
+		// Thread.sleep(1000);
 		botaoMenu().click();
 	}
 
@@ -91,8 +104,9 @@ public class PageCadastro {
 	}
 
 	private MobileElement inserirPrimeiroNome() {
-		List<MobileElement> els1 = driver.findElementsByXPath("//android.widget.RelativeLayout[1]/android.widget.EditText");
-		return els1.get(0);
+		MobileElement el1 = (MobileElement) driver.findElementByXPath(
+				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.EditText");
+		return el1;
 	}
 
 	public void preencherPrimeiroNome(String primeiroNome) {
@@ -101,8 +115,9 @@ public class PageCadastro {
 	}
 
 	private MobileElement inserirUltimoNome() {
-		List<MobileElement> els1 = driver.findElementsByXPath("//android.widget.RelativeLayout[2]/android.widget.EditText");
-		return els1.get(0);
+		MobileElement el2 = (MobileElement) driver.findElementByXPath(
+				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.EditText");
+		return el2;
 	}
 
 	public void preencherUltimoNome(String ultimoNome) {
@@ -111,8 +126,9 @@ public class PageCadastro {
 	}
 
 	private MobileElement inserirNumeroTelefone() {
-		List<MobileElement> els1 = driver.findElementsByXPath("//android.widget.RelativeLayout/android.widget.EditText");
-		return els1.get(2);
+		MobileElement el1 = (MobileElement) driver.findElementByXPath(
+				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.EditText");
+		return el1;
 	}
 
 	public void preencherNumeroTelefone(String numero) {
@@ -139,9 +155,9 @@ public class PageCadastro {
 	}
 
 	private MobileElement inserirCidade() {
-		MobileElement cidade = driver.findElementByXPath(
-				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout[1]/android.widget.EditText");
-		return cidade;
+		MobileElement el1 = (MobileElement) driver.findElementByXPath(
+				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout[1]/android.widget.EditText");
+		return el1;
 	}
 
 	public void preencherCidade(String cidade) {
@@ -184,6 +200,7 @@ public class PageCadastro {
 	}
 
 	public String validaCadastro() {
+		
 		return avalidacaoDeSucesso().getText();
 	}
 
@@ -210,5 +227,18 @@ public class PageCadastro {
 						+ esperado + "\").instance(0))");
 	}
 
+	@SuppressWarnings("rawtypes")
+	public void scroll(double inicio, double fim) throws Exception {
+		Dimension size = driver.manage().window().getSize();
+
+		int x = size.width / 2;
+		int start_y = (int) (size.height * inicio);
+		int end_y = (int) (size.height * fim);
+		new TouchAction((PerformsTouchActions) driver).press(PointOption.point(x, start_y))
+				.waitAction((WaitOptions.waitOptions(Duration.ofMillis(500))))//
+				.moveTo(PointOption.point(x, end_y))//
+				.release().perform();
+
+	}
 
 }
