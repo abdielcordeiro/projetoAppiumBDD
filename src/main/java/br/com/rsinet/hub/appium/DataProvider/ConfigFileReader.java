@@ -1,4 +1,4 @@
-package br.com.rsinet.HUB_Appium.DataProvider;
+package br.com.rsinet.hub.appium.DataProvider;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

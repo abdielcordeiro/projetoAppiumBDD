@@ -1,6 +1,6 @@
-package br.com.rsinet.HUB_Appium.Managers;
+package br.com.rsinet.hub.appium.Managers;
 
-import br.com.rsinet.HUB_Appium.DataProvider.ConfigFileReader;
+import br.com.rsinet.hub.appium.DataProvider.ConfigFileReader;
 
 public class FileReaderManager {
 

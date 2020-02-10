@@ -1,4 +1,4 @@
-package br.com.rsinet.HUB_Appium.Utility;
+package br.com.rsinet.hub.appium.Utility;
 
 public class Constant {
 

@@ -1,4 +1,4 @@
-package br.com.rsinet.HUB_Appium.ScreenObject;
+package br.com.rsinet.hub.appium.ScreenObject;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package br.com.rsinet.hub.appium.Test;
+package br.com.rsinet.hub.appium.Teste;
 
 import java.io.File;
 
@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 import com.cucumber.listener.Reporter;
 
-import br.com.rsinet.HUB_Appium.Managers.FileReaderManager;
+import br.com.rsinet.hub.appium.Managers.FileReaderManager;
 import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
 import cucumber.api.junit.Cucumber;

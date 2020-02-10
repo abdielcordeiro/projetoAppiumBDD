@@ -1,6 +1,6 @@
-package br.com.rsinet.HUB_Appium.CucumberTest;
+package br.com.rsinet.hub.appium.CucumberTest;
 
-import br.com.rsinet.HUB_Appium.Managers.DriverManager;
+import br.com.rsinet.hub.appium.Managers.DriverManager;
 
 public class TestContext {
 

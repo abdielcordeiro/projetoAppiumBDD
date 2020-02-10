@@ -1,11 +1,11 @@
-package br.com.rsinet.HUB_Appium.Managers;
+package br.com.rsinet.hub.appium.Managers;
 
 import java.net.URL;
 
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import br.com.rsinet.HUB_Appium.Utility.Constant;
+import br.com.rsinet.hub.appium.Utility.Constant;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 

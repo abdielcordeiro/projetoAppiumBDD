@@ -1,12 +1,12 @@
-package br.com.rsinet.HUB_Appium.StepDefinitions;
+package br.com.rsinet.hub.appium.StepDefinitions;
 
 import org.junit.Assert;
 
-import br.com.rsinet.HUB_Appium.CucumberTest.TestContext;
-import br.com.rsinet.HUB_Appium.ScreenObject.PageCadastro;
-import br.com.rsinet.HUB_Appium.Utility.Constant;
-import br.com.rsinet.HUB_Appium.Utility.ExcelUtils;
-import br.com.rsinet.HUB_Appium.Utility.MassaDados;
+import br.com.rsinet.hub.appium.CucumberTest.TestContext;
+import br.com.rsinet.hub.appium.ScreenObject.PageCadastro;
+import br.com.rsinet.hub.appium.Utility.Constant;
+import br.com.rsinet.hub.appium.Utility.ExcelUtils;
+import br.com.rsinet.hub.appium.Utility.MassaDados;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;

@@ -1,4 +1,4 @@
-package br.com.rsinet.HUB_Appium.StepDefinitions;
+package br.com.rsinet.hub.appium.StepDefinitions;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import org.openqa.selenium.TakesScreenshot;
 
 import com.cucumber.listener.Reporter;
 
-import br.com.rsinet.HUB_Appium.CucumberTest.TestContext;
+import br.com.rsinet.hub.appium.CucumberTest.TestContext;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
