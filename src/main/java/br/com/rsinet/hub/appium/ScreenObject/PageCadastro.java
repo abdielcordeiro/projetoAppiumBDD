@@ -36,7 +36,6 @@ public class PageCadastro {
 	public void clicarMenu() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOf(esperaCadastrar()));
-		// Thread.sleep(1000);
 		botaoMenu().click();
 	}
 

@@ -69,7 +69,6 @@ public class PageBusca {
 	}
 
 	public void selecionaTipo(String tipo) throws InterruptedException {
-		// Thread.sleep(1000);
 		escolherTipo(tipo).click();
 	}
 
