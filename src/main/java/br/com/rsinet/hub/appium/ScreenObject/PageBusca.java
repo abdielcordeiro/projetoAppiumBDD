@@ -1,21 +1,24 @@
 package br.com.rsinet.hub.appium.ScreenObject;
 
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import io.appium.java_client.MobileElement;
+import br.com.rsinet.hub.appium.Utility.Constant;
 import io.appium.java_client.android.AndroidDriver;
 
 public class PageBusca {
 
-	private AndroidDriver<MobileElement> driver;
+	private AndroidDriver<WebElement> driver;
 
-	public PageBusca(AndroidDriver<MobileElement> driver) {
+	public PageBusca(AndroidDriver<WebElement> driver) {
 		this.driver = driver;
 	}
 
-	private MobileElement botaoLupa() {
-		MobileElement bntLupa = driver.findElementById("com.Advantage.aShopping:id/imageViewSearch");
+	private WebElement botaoLupa() {
+		WebElement bntLupa = driver.findElementById("com.Advantage.aShopping:id/imageViewSearch");
 		return bntLupa;
 	}
 
@@ -23,8 +26,8 @@ public class PageBusca {
 		botaoLupa().click();
 	}
 
-	private MobileElement escreverBusca() {
-		MobileElement escLupa = driver.findElementById("com.Advantage.aShopping:id/editTextSearch");
+	private WebElement escreverBusca() {
+		WebElement escLupa = driver.findElementById("com.Advantage.aShopping:id/editTextSearch");
 		return escLupa;
 	}
 
@@ -32,8 +35,8 @@ public class PageBusca {
 		escreverBusca().sendKeys(busca);
 	}
 
-	private MobileElement clicarProduto() {
-		MobileElement apertarProduto = driver.findElementById("com.Advantage.aShopping:id/imageViewProduct");
+	private WebElement clicarProduto() {
+		WebElement apertarProduto = driver.findElementById("com.Advantage.aShopping:id/imageViewProduct");
 		return apertarProduto;
 	}
 
@@ -41,12 +44,12 @@ public class PageBusca {
 		clicarProduto().click();
 	}
 
-	private MobileElement verificarNomeProduto(String nome) {
-		WebDriverWait wait = new WebDriverWait(driver, 40);
+	private WebElement verificarNomeProduto(String nome) {
+		WebDriverWait wait = new WebDriverWait(driver, Constant.wait);
 		wait.until(ExpectedConditions.textToBePresentInElement(
 				driver.findElementById("com.Advantage.aShopping:id/textViewProductName"), nome));
 
-		MobileElement el2 = driver.findElementById("com.Advantage.aShopping:id/textViewProductName");
+		WebElement el2 = driver.findElementById("com.Advantage.aShopping:id/textViewProductName");
 		return el2;
 	}
 
@@ -54,8 +57,8 @@ public class PageBusca {
 		return verificarNomeProduto(nome).getText();
 	}
 
-	private MobileElement verificarNomeProdutoFalha() {
-		MobileElement el1 = driver.findElementById("com.Advantage.aShopping:id/textViewNoProductsToShow");
+	private WebElement verificarNomeProdutoFalha() {
+		WebElement el1 = driver.findElementById("com.Advantage.aShopping:id/textViewNoProductsToShow");
 		return el1;
 	}
 
@@ -63,18 +66,21 @@ public class PageBusca {
 		return verificarNomeProdutoFalha().getText();
 	}
 
-	private MobileElement escolherTipo(String tipo) {
-		MobileElement el2 = driver.findElementByXPath("//android.widget.TextView[starts-with(@text, '" + tipo + "')]");
+	private WebElement escolherTipo(String tipo) {
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		WebElement el2 = wait.until(ExpectedConditions.visibilityOf(
+				driver.findElementByXPath("//android.widget.TextView[starts-with(@text, '" + tipo + "')]")));
+
 		return el2;
 	}
 
-	public void selecionaTipo(String tipo) throws InterruptedException {
+	public void selecionaTipo(String tipo) {
+		driver.manage().timeouts().implicitlyWait(4000, TimeUnit.MILLISECONDS);
 		escolherTipo(tipo).click();
 	}
 
-	private MobileElement escolherProduto(String produto) {
-		MobileElement el2 = driver
-				.findElementByXPath("//android.widget.TextView[starts-with(@text, '" + produto + "')]");
+	private WebElement escolherProduto(String produto) {
+		WebElement el2 = driver.findElementByXPath("//android.widget.TextView[starts-with(@text, '" + produto + "')]");
 		return el2;
 	}
 
@@ -82,8 +88,8 @@ public class PageBusca {
 		escolherProduto(produto).click();
 	}
 
-	private MobileElement bntAdicionar() {
-		MobileElement el1 = driver.findElementById("com.Advantage.aShopping:id/linearLayoutProductQuantity");
+	private WebElement bntAdicionar() {
+		WebElement el1 = driver.findElementById("com.Advantage.aShopping:id/linearLayoutProductQuantity");
 		return el1;
 	}
 
@@ -91,8 +97,8 @@ public class PageBusca {
 		bntAdicionar().click();
 	}
 
-	private MobileElement bntMais() {
-		MobileElement el2 = driver.findElementByXPath(
+	private WebElement bntMais() {
+		WebElement el2 = driver.findElementByXPath(
 				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.ImageView[2]");
 		return el2;
 	}
@@ -101,8 +107,8 @@ public class PageBusca {
 		bntMais().click();
 	}
 
-	private MobileElement bntApply() {
-		MobileElement el1 = driver.findElementById("com.Advantage.aShopping:id/textViewApply");
+	private WebElement bntApply() {
+		WebElement el1 = driver.findElementById("com.Advantage.aShopping:id/textViewApply");
 		return el1;
 	}
 
@@ -110,8 +116,8 @@ public class PageBusca {
 		bntApply().click();
 	}
 
-	private MobileElement bntAddCarinho() {
-		MobileElement el2 = driver.findElementById("com.Advantage.aShopping:id/buttonProductAddToCart");
+	private WebElement bntAddCarinho() {
+		WebElement el2 = driver.findElementById("com.Advantage.aShopping:id/buttonProductAddToCart");
 		return el2;
 	}
 
@@ -119,8 +125,8 @@ public class PageBusca {
 		bntAddCarinho().click();
 	}
 
-	private MobileElement inputLogin() {
-		MobileElement el3 = driver.findElementByXPath(
+	private WebElement inputLogin() {
+		WebElement el3 = driver.findElementByXPath(
 				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout[3]/android.widget.EditText");
 		return el3;
 	}
@@ -130,8 +136,8 @@ public class PageBusca {
 		inputLogin().sendKeys(nome);
 	}
 
-	private MobileElement inputSenha() {
-		MobileElement el1 = driver.findElementByXPath(
+	private WebElement inputSenha() {
+		WebElement el1 = driver.findElementByXPath(
 				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout[4]/android.widget.EditText");
 		return el1;
 	}
@@ -141,39 +147,32 @@ public class PageBusca {
 		inputSenha().sendKeys(senha);
 	}
 
-	private MobileElement bntLogar() {
-		MobileElement el2 = driver.findElementById("com.Advantage.aShopping:id/buttonLogin");
+	private WebElement bntLogar() {
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebElement el2 = wait.until(ExpectedConditions
+				.elementToBeClickable(driver.findElementById("com.Advantage.aShopping:id/buttonLogin")));
 		return el2;
 	}
 
 	public void botaoLogar() {
-		WebDriverWait wait = new WebDriverWait(driver, 40);
-		wait.until(ExpectedConditions.elementToBeClickable(bntLogar())).click();
+		bntLogar().click();
 
 	}
 
-	private MobileElement bntDedo() {
-		MobileElement el2 = driver.findElementById("android:id/button2");
-		WebDriverWait wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.visibilityOf(el2));
-		return el2;
+	private WebElement bntDedo() {
+		WebElement el2 = driver.findElementById("android:id/button2");
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebElement el3 = wait.until(ExpectedConditions.visibilityOf(el2));
+
+		return el3;
 	}
 
-	/**
-	 * Corrigir o Thread Sleep
-	 */
-	public void clicarAutenticacaoDedo() throws InterruptedException {
-		System.out.println(bntDedo().getText());
-		if (bntDedo().getText().equals("NO")) {
-			bntDedo().click();
-		} else {
-			System.out.println("Botao inexistente");
-		}
-
+	public void clicarAutenticacaoDedo() {
+		bntDedo().click();
 	}
 
-	private MobileElement bntEntrarCarinho() {
-		MobileElement el1 = driver.findElementById("com.Advantage.aShopping:id/imageViewCart");
+	private WebElement bntEntrarCarinho() {
+		WebElement el1 = driver.findElementById("com.Advantage.aShopping:id/imageViewCart");
 		return el1;
 	}
 
@@ -181,8 +180,8 @@ public class PageBusca {
 		bntEntrarCarinho().click();
 	}
 
-	private MobileElement validaQnt() {
-		MobileElement el2 = driver.findElementById("com.Advantage.aShopping:id/textViewCartQuantity");
+	private WebElement validaQnt() {
+		WebElement el2 = driver.findElementById("com.Advantage.aShopping:id/textViewCartQuantity");
 		return el2;
 	}
 

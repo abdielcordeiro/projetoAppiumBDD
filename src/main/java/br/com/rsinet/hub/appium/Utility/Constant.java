@@ -2,6 +2,8 @@ package br.com.rsinet.hub.appium.Utility;
 
 public class Constant {
 
+	public static final int wait = 60;
+
 	public static final String URL = "http://127.0.0.1:4723/wd/hub";
 
 	public static final String Pacote = "com.Advantage.aShopping";

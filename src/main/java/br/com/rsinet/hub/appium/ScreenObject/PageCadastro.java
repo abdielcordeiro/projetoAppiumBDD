@@ -4,11 +4,10 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.WaitOptions;
@@ -16,20 +15,20 @@ import io.appium.java_client.touch.offset.PointOption;
 
 public class PageCadastro {
 
-	private AndroidDriver<MobileElement> driver;
+	private AndroidDriver<WebElement> driver;
 
-	public PageCadastro(AndroidDriver<MobileElement> driver) {
+	public PageCadastro(AndroidDriver<WebElement> driver) {
 		this.driver = driver;
 	}
 
-	private MobileElement esperaCadastrar() {
-		MobileElement el1 = (MobileElement) driver.findElementByXPath(
+	private WebElement esperaCadastrar() {
+		WebElement el1 = driver.findElementByXPath(
 				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.ImageView");
 		return el1;
 	}
 
-	private MobileElement botaoMenu() {
-		MobileElement bntMenu = driver.findElementById("com.Advantage.aShopping:id/imageViewMenu");
+	private WebElement botaoMenu() {
+		WebElement bntMenu = driver.findElementById("com.Advantage.aShopping:id/imageViewMenu");
 		return bntMenu;
 	}
 
@@ -39,8 +38,8 @@ public class PageCadastro {
 		botaoMenu().click();
 	}
 
-	private MobileElement botaoLogin() {
-		MobileElement bntLogin = driver.findElementByXPath(
+	private WebElement botaoLogin() {
+		WebElement bntLogin = driver.findElementByXPath(
 				"//android.support.v4.widget.DrawerLayout[@content-desc=\"Main Menu\"]/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout");
 		return bntLogin;
 	}
@@ -49,8 +48,8 @@ public class PageCadastro {
 		botaoLogin().click();
 	}
 
-	private MobileElement botaoCadastrar() {
-		MobileElement bntCadastrar = driver.findElementById("com.Advantage.aShopping:id/textViewDontHaveAnAccount");
+	private WebElement botaoCadastrar() {
+		WebElement bntCadastrar = driver.findElementById("com.Advantage.aShopping:id/textViewDontHaveAnAccount");
 		return bntCadastrar;
 	}
 
@@ -58,8 +57,8 @@ public class PageCadastro {
 		botaoCadastrar().click();
 	}
 
-	private MobileElement inserirNomeUsuario() {
-		MobileElement nomeUsuario = driver.findElementByXPath(
+	private WebElement inserirNomeUsuario() {
+		WebElement nomeUsuario = driver.findElementByXPath(
 				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.EditText");
 		return nomeUsuario;
 	}
@@ -69,8 +68,8 @@ public class PageCadastro {
 		inserirNomeUsuario().sendKeys(nomeUsuario);
 	}
 
-	private MobileElement inserirEmail() {
-		MobileElement inserirEmail = driver.findElementByXPath(
+	private WebElement inserirEmail() {
+		WebElement inserirEmail = driver.findElementByXPath(
 				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout/android.widget.EditText");
 		return inserirEmail;
 	}
@@ -80,8 +79,8 @@ public class PageCadastro {
 		inserirEmail().sendKeys(email);
 	}
 
-	private MobileElement inserirSenha() {
-		MobileElement senha = driver.findElementByXPath(
+	private WebElement inserirSenha() {
+		WebElement senha = driver.findElementByXPath(
 				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout[3]/android.widget.RelativeLayout/android.widget.EditText");
 		return senha;
 	}
@@ -91,8 +90,8 @@ public class PageCadastro {
 		inserirSenha().sendKeys(senha);
 	}
 
-	private MobileElement inserirConfirmacaoSenha() {
-		List<MobileElement> els1 = driver.findElementsByXPath(
+	private WebElement inserirConfirmacaoSenha() {
+		List<WebElement> els1 = driver.findElementsByXPath(
 				"//android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.EditText");
 		return els1.get(3);
 	}
@@ -102,8 +101,8 @@ public class PageCadastro {
 		inserirConfirmacaoSenha().sendKeys(confirmaSenha);
 	}
 
-	private MobileElement inserirPrimeiroNome() {
-		MobileElement el1 = (MobileElement) driver.findElementByXPath(
+	private WebElement inserirPrimeiroNome() {
+		WebElement el1 = driver.findElementByXPath(
 				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.EditText");
 		return el1;
 	}
@@ -113,8 +112,8 @@ public class PageCadastro {
 		inserirPrimeiroNome().sendKeys(primeiroNome);
 	}
 
-	private MobileElement inserirUltimoNome() {
-		MobileElement el2 = (MobileElement) driver.findElementByXPath(
+	private WebElement inserirUltimoNome() {
+		WebElement el2 = driver.findElementByXPath(
 				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.EditText");
 		return el2;
 	}
@@ -124,8 +123,8 @@ public class PageCadastro {
 		inserirUltimoNome().sendKeys(ultimoNome);
 	}
 
-	private MobileElement inserirNumeroTelefone() {
-		MobileElement el1 = (MobileElement) driver.findElementByXPath(
+	private WebElement inserirNumeroTelefone() {
+		WebElement el1 = driver.findElementByXPath(
 				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.EditText");
 		return el1;
 	}
@@ -135,8 +134,8 @@ public class PageCadastro {
 		inserirNumeroTelefone().sendKeys(numero);
 	}
 
-	private MobileElement botaoLocalizacao() {
-		MobileElement localizacao = driver.findElementById("com.Advantage.aShopping:id/switchLocation");
+	private WebElement botaoLocalizacao() {
+		WebElement localizacao = driver.findElementById("com.Advantage.aShopping:id/switchLocation");
 		return localizacao;
 	}
 
@@ -144,8 +143,8 @@ public class PageCadastro {
 		botaoLocalizacao().click();
 	}
 
-	private MobileElement botaoConfirmaLocalizacao() {
-		MobileElement confLocation = driver.findElementById("com.android.packageinstaller:id/permission_allow_button");
+	private WebElement botaoConfirmaLocalizacao() {
+		WebElement confLocation = driver.findElementById("com.android.packageinstaller:id/permission_allow_button");
 		return confLocation;
 	}
 
@@ -153,8 +152,8 @@ public class PageCadastro {
 		botaoConfirmaLocalizacao().click();
 	}
 
-	private MobileElement inserirCidade() {
-		MobileElement el1 = (MobileElement) driver.findElementByXPath(
+	private WebElement inserirCidade() {
+		WebElement el1 = driver.findElementByXPath(
 				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout[1]/android.widget.EditText");
 		return el1;
 	}
@@ -165,8 +164,8 @@ public class PageCadastro {
 		inserirCidade().sendKeys(cidade);
 	}
 
-	private MobileElement botaoPais() {
-		MobileElement botaoPais = driver.findElementById("com.Advantage.aShopping:id/linearLayoutCountry");
+	private WebElement botaoPais() {
+		WebElement botaoPais = driver.findElementById("com.Advantage.aShopping:id/linearLayoutCountry");
 		return botaoPais;
 	}
 
@@ -174,8 +173,8 @@ public class PageCadastro {
 		botaoPais().click();
 	}
 
-	private MobileElement confirmaPais() {
-		MobileElement confirmaPais = driver.findElementByXPath(
+	private WebElement confirmaPais() {
+		WebElement confirmaPais = driver.findElementByXPath(
 				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.TextView[6]");
 		return confirmaPais;
 	}
@@ -184,8 +183,8 @@ public class PageCadastro {
 		confirmaPais().click();
 	}
 
-	private MobileElement botaoConfirmaCadastro() {
-		MobileElement botaoConfirmaCadastro = driver.findElementById("com.Advantage.aShopping:id/buttonRegister");
+	private WebElement botaoConfirmaCadastro() {
+		WebElement botaoConfirmaCadastro = driver.findElementById("com.Advantage.aShopping:id/buttonRegister");
 		return botaoConfirmaCadastro;
 	}
 
@@ -193,18 +192,18 @@ public class PageCadastro {
 		botaoConfirmaCadastro().click();
 	}
 
-	private MobileElement avalidacaoDeSucesso() {
-		MobileElement validacao = driver.findElementById("com.Advantage.aShopping:id/textViewMenuUser");
+	private WebElement avalidacaoDeSucesso() {
+		WebElement validacao = driver.findElementById("com.Advantage.aShopping:id/textViewMenuUser");
 		return validacao;
 	}
 
 	public String validaCadastro() {
-		
+
 		return avalidacaoDeSucesso().getText();
 	}
 
-	private MobileElement validaUsuarioInvalido() {
-		MobileElement nomeErrado = driver.findElementByXPath(
+	private WebElement validaUsuarioInvalido() {
+		WebElement nomeErrado = driver.findElementByXPath(
 				"//android.view.ViewGroup[@content-desc=\"Home Page\"]/android.widget.LinearLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.TextView");
 		return nomeErrado;
 	}
@@ -233,7 +232,7 @@ public class PageCadastro {
 		int x = size.width / 2;
 		int start_y = (int) (size.height * inicio);
 		int end_y = (int) (size.height * fim);
-		new TouchAction((PerformsTouchActions) driver).press(PointOption.point(x, start_y))
+		new TouchAction(driver).press(PointOption.point(x, start_y))
 				.waitAction((WaitOptions.waitOptions(Duration.ofMillis(500))))//
 				.moveTo(PointOption.point(x, end_y))//
 				.release().perform();

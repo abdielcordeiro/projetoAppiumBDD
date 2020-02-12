@@ -1,6 +1,7 @@
 package br.com.rsinet.hub.appium.StepDefinitions;
 
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
 import br.com.rsinet.hub.appium.CucumberTest.TestContext;
 import br.com.rsinet.hub.appium.ScreenObject.PageCadastro;
@@ -10,12 +11,11 @@ import br.com.rsinet.hub.appium.Utility.MassaDados;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
 public class CadastrarUsuarioStep {
 
-	private AndroidDriver<MobileElement> driver;
+	private AndroidDriver<WebElement> driver;
 	private PageCadastro cadastro;
 	private MassaDados dados;
 	private TestContext testContext;
@@ -90,7 +90,7 @@ public class CadastrarUsuarioStep {
 		cadastro.clicarMenu();
 		dados.setNomeUsuario(nomeUsuario);
 		Assert.assertTrue("Usuário cadastrado com sucesso",
-				cadastro.validaCadastro().equals(dados.getNomeUsuarioExcel()));	
+				cadastro.validaCadastro().equals(dados.getNomeUsuarioExcel()));
 	}
 
 	@Dado("^preenche formulario de cadastro falha$")

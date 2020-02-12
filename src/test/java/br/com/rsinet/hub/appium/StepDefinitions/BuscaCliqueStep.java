@@ -1,6 +1,7 @@
 package br.com.rsinet.hub.appium.StepDefinitions;
 
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
 import br.com.rsinet.hub.appium.CucumberTest.TestContext;
 import br.com.rsinet.hub.appium.ScreenObject.PageBusca;
@@ -11,12 +12,11 @@ import br.com.rsinet.hub.appium.Utility.MassaDados;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
 public class BuscaCliqueStep {
 
-	private AndroidDriver<MobileElement> driver;
+	private AndroidDriver<WebElement> driver;
 	private PageBusca busca;
 	private MassaDados dados;
 	private PageCadastro cadastro;
