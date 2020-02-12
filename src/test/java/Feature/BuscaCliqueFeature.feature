@@ -4,17 +4,15 @@ Funcionalidade: Ação de buscar um produto por clique
 
   Contexto: 
     Dado Que o usuário esteja na tela principal clique
-    Quando faz login
     E Clica em uma categoria
-    E Clica no produto desejado
 
   @Sucesso
   Cenário: Buscar um produto por clique com Sucesso
+    E Clica no produto desejado
     Então Valida produto encontrado com sucesso
 
   @Falha
   Cenário: Buscar um produto que não exista
-    E Clica para adicionar mais produtos
-    E Coloca a quantidade de produto desejada e adiciona
-    E Clica para entrar no carinho
-    Então Valida a quantidade de produtos
+    E Clica no filtros
+    E Adiciona filtros para buscar um produto
+    Então Valida produto não encontrado pelos filtro
