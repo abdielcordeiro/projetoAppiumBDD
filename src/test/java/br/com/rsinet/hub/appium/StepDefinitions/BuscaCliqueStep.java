@@ -35,16 +35,17 @@ public class BuscaCliqueStep {
 		dados = new MassaDados();
 	}
 
-	@Dado("^faz login$")
-	public void faz_login() throws Throwable {
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData, "Cadastro");
-		cadastro.clicarMenu();
-		cadastro.clicarLogin();
-		busca.inserirLogin(dados.getNomeUsuarioExcel());
-		busca.inserirSenha(dados.getSenha());
-		driver.hideKeyboard();
-		busca.botaoLogar();
-		busca.clicarAutenticacaoDedo();
+	@Dado("^Clica no filtros$")
+	public void clica_no_filtros() {
+		busca.clicarBotaoFiltro();
+	}
+
+	@Dado("^Adiciona filtros para buscar um produto$")
+	public void adiciona_filtros_para_buscar_um_produto() {
+		busca.botaoFuncionalidade();
+		busca.botaoResolucao();
+		busca.botaoMemoria();
+		busca.botaoAplicar();
 	}
 
 	@Quando("^Clica em uma categoria$")
@@ -64,28 +65,9 @@ public class BuscaCliqueStep {
 				.retornaNomeProduto(dados.getNomeProduto().toUpperCase()).equals(dados.getNomeProduto().toUpperCase()));
 	}
 
-	@Quando("^Clica para adicionar mais produtos$")
-	public void clica_para_adicionar_mais_produtos() throws Throwable {
-		busca.botaoAdicionar();
-	}
-
-	@Quando("^Coloca a quantidade de produto desejada e adiciona$")
-	public void coloca_a_quantidade_de_produto_desejada_e_adiciona() throws Throwable {
-		for (int i = 0; i < dados.getQuantidadeProduto() - 1; i++) {
-			busca.botaoMais();
-		}
-		busca.aceitarQuantidade();
-		busca.botaoAdicionarCarrinho();
-	}
-
-	@Quando("^Clica para entrar no carinho$")
-	public void clica_para_entrar_no_carinho() throws Throwable {
-		busca.entrarNoCarrinho();
-	}
-
-	@Então("^Valida a quantidade de produtos$")
-	public void valida_a_quantidade_de_produtos() throws Throwable {
-		Assert.assertTrue("Quantidade diferente da quantidade pedida",
-				busca.validarQuantidadeProduto() != dados.getQuantidadeProduto());
+	@Então("^Valida produto não encontrado pelos filtro$")
+	public void valida_produto_não_encontrado_pelos_filtro() {
+		//System.out.println(busca.mensagemProdutoClique());
+		Assert.assertTrue("Produto não encontrado", busca.mensagemProdutoClique().equals("- No results -"));
 	}
 }

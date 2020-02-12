@@ -88,104 +88,86 @@ public class PageBusca {
 		escolherProduto(produto).click();
 	}
 
-	private WebElement bntAdicionar() {
-		WebElement el1 = driver.findElementById("com.Advantage.aShopping:id/linearLayoutProductQuantity");
+	private WebElement btnFiltro() {
+		WebElement el1 = driver.findElementByXPath(
+				"//android.widget.RelativeLayout[@content-desc=\"Laptops\"]/android.widget.LinearLayout/android.widget.LinearLayout");
 		return el1;
 	}
 
-	public void botaoAdicionar() {
-		bntAdicionar().click();
+	public void clicarBotaoFiltro() {
+		btnFiltro().click();
 	}
 
-	private WebElement bntMais() {
+	private WebElement btnFuncionalidade() {
+		WebElement el1 = driver.findElementByXPath(
+				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ExpandableListView/android.widget.LinearLayout[2]/android.widget.LinearLayout");
+		return el1;
+	}
+
+	private WebElement escolheFuncionalidade() {
+		WebElement el1 = driver.findElementByXPath(
+				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ExpandableListView/android.widget.LinearLayout[3]/android.widget.LinearLayout");
+		return el1;
+	}
+
+	public void botaoFuncionalidade() {
+		btnFuncionalidade().click();
+		escolheFuncionalidade().click();
+		btnFuncionalidade().click();
+	}
+
+	private WebElement bntResolucao() {
+		WebElement el1 = driver.findElementByXPath(
+				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ExpandableListView/android.widget.LinearLayout[4]/android.widget.LinearLayout");
+		return el1;
+	}
+
+	private WebElement escolheResolucao() {
 		WebElement el2 = driver.findElementByXPath(
-				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.ImageView[2]");
+				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ExpandableListView/android.widget.LinearLayout[6]/android.widget.LinearLayout");
 		return el2;
 	}
 
-	public void botaoMais() {
-		bntMais().click();
+	public void botaoResolucao() {
+		bntResolucao().click();
+		escolheResolucao().click();
+		bntResolucao().click();
 	}
 
-	private WebElement bntApply() {
+	private WebElement bntMemoria() {
+		WebElement el1 = driver.findElementByXPath(
+				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ExpandableListView/android.widget.LinearLayout[6]/android.widget.LinearLayout");
+		return el1;
+	}
+
+	private WebElement escolhaMemoria() {
+		WebElement el2 = driver.findElementByXPath(
+				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ExpandableListView/android.widget.LinearLayout[7]/android.widget.LinearLayout");
+		return el2;
+	}
+
+	public void botaoMemoria() {
+		bntMemoria().click();
+		escolhaMemoria().click();
+		bntMemoria().click();
+	}
+
+	private WebElement bntAplicar() {
 		WebElement el1 = driver.findElementById("com.Advantage.aShopping:id/textViewApply");
 		return el1;
 	}
 
-	public void aceitarQuantidade() {
-		bntApply().click();
+	public void botaoAplicar() {
+		bntAplicar().click();
 	}
 
-	private WebElement bntAddCarinho() {
-		WebElement el2 = driver.findElementById("com.Advantage.aShopping:id/buttonProductAddToCart");
-		return el2;
-	}
-
-	public void botaoAdicionarCarrinho() {
-		bntAddCarinho().click();
-	}
-
-	private WebElement inputLogin() {
-		WebElement el3 = driver.findElementByXPath(
-				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout[3]/android.widget.EditText");
-		return el3;
-	}
-
-	public void inserirLogin(String nome) {
-		inputLogin().click();
-		inputLogin().sendKeys(nome);
-	}
-
-	private WebElement inputSenha() {
-		WebElement el1 = driver.findElementByXPath(
-				"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout[4]/android.widget.EditText");
+	private WebElement validaMensagemErroClique() {
+		WebElement el1 = driver.findElementById("com.Advantage.aShopping:id/textViewNoProductsToShow");
 		return el1;
 	}
 
-	public void inserirSenha(String senha) {
-		inputSenha().click();
-		inputSenha().sendKeys(senha);
+	public String mensagemProdutoClique() {
+		return validaMensagemErroClique().getText();
 	}
 
-	private WebElement bntLogar() {
-		WebDriverWait wait = new WebDriverWait(driver, 20);
-		WebElement el2 = wait.until(ExpectedConditions
-				.elementToBeClickable(driver.findElementById("com.Advantage.aShopping:id/buttonLogin")));
-		return el2;
-	}
-
-	public void botaoLogar() {
-		bntLogar().click();
-
-	}
-
-	private WebElement bntDedo() {
-		WebElement el2 = driver.findElementById("android:id/button2");
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		WebElement el3 = wait.until(ExpectedConditions.visibilityOf(el2));
-
-		return el3;
-	}
-
-	public void clicarAutenticacaoDedo() {
-		bntDedo().click();
-	}
-
-	private WebElement bntEntrarCarinho() {
-		WebElement el1 = driver.findElementById("com.Advantage.aShopping:id/imageViewCart");
-		return el1;
-	}
-
-	public void entrarNoCarrinho() {
-		bntEntrarCarinho().click();
-	}
-
-	private WebElement validaQnt() {
-		WebElement el2 = driver.findElementById("com.Advantage.aShopping:id/textViewCartQuantity");
-		return el2;
-	}
-
-	public int validarQuantidadeProduto() {
-		return Integer.parseInt(validaQnt().getText());
-	}
 }
