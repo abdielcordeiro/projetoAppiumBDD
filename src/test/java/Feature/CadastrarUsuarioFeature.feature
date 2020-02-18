@@ -7,11 +7,17 @@ Funcionalidade: Ação de Cadastrar um Usuário no aplicativo
     Quando Navega para o login
     E clicar em cadastrar novo usuário
 
-  @Sucesso
-  Cenário: Cadastrar um usuário com sucesso
-    Dado preenche formulario de cadastro sucesso
+  @SucessoCadastro
+ Esquema do Cenário: Cadastrar um usuário com sucesso
+    Dado preenche formulario de cadastro sucesso "<qntLinhas>"
     E Clica no botão de registrar
     Então Valida usuário cadastrardo com sucesso
+
+Exemplos:
+	|qntLinhas|
+	| 1	|
+	| 2	|
+	| 3	|
 
   @Falha
   Cenário: Cadastrar um usuário com falha

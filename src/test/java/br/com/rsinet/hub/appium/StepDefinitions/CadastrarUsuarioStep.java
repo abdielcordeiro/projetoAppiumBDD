@@ -49,8 +49,10 @@ public class CadastrarUsuarioStep {
 		login.clicarCadastrar();
 	}
 
-	@Dado("^preenche formulario de cadastro sucesso$")
-	public void preenche_formulario_de_cadastro_sucesso() throws Exception {
+	@Dado("^preenche formulario de cadastro sucesso \"([^\"]*)\"$")
+	public void preencheFormularioDeCadastroSucesso(int linha) throws Exception{
+
+		dados.setLinhaCadastro(linha);
 
 		nomeUsuario = dados.getNomeUsuario(6);
 		cadastro.preencherNomeDeUsuario(nomeUsuario);
@@ -83,6 +85,7 @@ public class CadastrarUsuarioStep {
 		cadastro.clicarPais();
 		cadastro.scrollAndClick("Brazil");
 	}
+
 
 	@Dado("^Clica no botão de registrar$")
 	public void clica_no_botão_de_registrar() {

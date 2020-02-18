@@ -5,13 +5,16 @@ import java.util.Random;
 public class MassaDados {
 
 	private int linhaTipo = 2;
-	private int linhaCadastro = 1;
+	private int linhaCadastro;
 	private static int linhaFalha = 9;
 
 	public void proximaLinha() {
 		this.linhaCadastro += 1;
 	}
 
+	public void setLinhaCadastro(int linha) {
+		this.linhaCadastro = linha;
+	}
 	public void setNomeUsuario(String nome) throws Exception {
 		ExcelUtils.setCellData(nome, linhaCadastro, Constant.Usuario);
 	}

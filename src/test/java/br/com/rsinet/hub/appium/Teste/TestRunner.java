@@ -22,7 +22,7 @@ import cucumber.api.junit.Cucumber;
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,
 		dryRun = false,
-		tags = {"@Sucesso, @Falha"} //Configurações das anotações que devem ser executadas
+		tags = {"@SucessoCadastro"} //Configurações das anotações que devem ser executadas
 )
 
 public class TestRunner {
