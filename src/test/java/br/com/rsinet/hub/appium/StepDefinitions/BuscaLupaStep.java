@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 
 import br.com.rsinet.hub.appium.CucumberTest.TestContext;
 import br.com.rsinet.hub.appium.ScreenObject.PageBusca;
+import br.com.rsinet.hub.appium.ScreenObject.PageHome;
 import br.com.rsinet.hub.appium.Utility.Constant;
 import br.com.rsinet.hub.appium.Utility.ExcelUtils;
 import br.com.rsinet.hub.appium.Utility.MassaDados;
@@ -17,6 +18,7 @@ public class BuscaLupaStep {
 
 	private AndroidDriver<WebElement> driver;
 	private PageBusca busca;
+	private PageHome home;
 	private MassaDados dados;
 	private TestContext testContext;
 
@@ -35,17 +37,17 @@ public class BuscaLupaStep {
 
 	@Quando("^Clica no botão da lupa$")
 	public void clica_no_botão_da_lupa() throws Throwable {
-		busca.clicarLupa();
+		home.clicarLupa();
 	}
 
 	@Quando("^Digita nome do produto existente$")
 	public void digita_nome_do_produto_existente() throws Throwable {
-		busca.inserirBusca(dados.getNomeProduto());
+		home.inserirBusca(dados.getNomeProduto());
 	}
 
 	@Quando("^Clica na lupa para buscar Sucesso$")
 	public void clica_na_lupa_para_buscar_Sucesso() throws Throwable {
-		busca.clicarLupa();
+		home.clicarLupa();
 	}
 
 	@Então("^busca realizada com sucesso produto encontrado$")
@@ -57,12 +59,12 @@ public class BuscaLupaStep {
 
 	@Quando("^Digita o nome do tipo do produto inexistente$")
 	public void digita_o_nome_do_tipo_do_produto_inexistente() throws Throwable {
-		busca.inserirBusca(dados.getNomeProdutoFalha());
+		home.inserirBusca(dados.getNomeProdutoFalha());
 	}
 
 	@Quando("^Clica na lupa para buscar falha$")
 	public void clica_na_lupa_para_buscar_falha() throws Throwable {
-		busca.clicarLupa();
+		home.clicarLupa();
 	}
 
 	@Então("^valida mensagem de produto não encontrado$")

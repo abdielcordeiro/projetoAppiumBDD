@@ -17,24 +17,6 @@ public class PageBusca {
 		this.driver = driver;
 	}
 
-	private WebElement botaoLupa() {
-		WebElement bntLupa = driver.findElementById("com.Advantage.aShopping:id/imageViewSearch");
-		return bntLupa;
-	}
-
-	public void clicarLupa() {
-		botaoLupa().click();
-	}
-
-	private WebElement escreverBusca() {
-		WebElement escLupa = driver.findElementById("com.Advantage.aShopping:id/editTextSearch");
-		return escLupa;
-	}
-
-	public void inserirBusca(String busca) {
-		escreverBusca().sendKeys(busca);
-	}
-
 	private WebElement clicarProduto() {
 		WebElement apertarProduto = driver.findElementById("com.Advantage.aShopping:id/imageViewProduct");
 		return apertarProduto;

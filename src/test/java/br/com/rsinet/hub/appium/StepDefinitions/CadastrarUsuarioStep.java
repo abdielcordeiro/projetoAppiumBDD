@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 
 import br.com.rsinet.hub.appium.CucumberTest.TestContext;
 import br.com.rsinet.hub.appium.ScreenObject.PageCadastro;
+import br.com.rsinet.hub.appium.ScreenObject.PageHome;
+import br.com.rsinet.hub.appium.ScreenObject.PageLogin;
 import br.com.rsinet.hub.appium.Utility.Constant;
 import br.com.rsinet.hub.appium.Utility.ExcelUtils;
 import br.com.rsinet.hub.appium.Utility.MassaDados;
@@ -17,6 +19,8 @@ public class CadastrarUsuarioStep {
 
 	private AndroidDriver<WebElement> driver;
 	private PageCadastro cadastro;
+	private PageHome home;
+	private PageLogin login;
 	private MassaDados dados;
 	private TestContext testContext;
 	private String nomeUsuario;
@@ -36,13 +40,13 @@ public class CadastrarUsuarioStep {
 
 	@Quando("^Navega para o login$")
 	public void navega_para_o_login() throws Throwable {
-		cadastro.clicarMenu();
-		cadastro.clicarLogin();
+		home.clicarMenu();
+		home.clicarLogin();
 	}
 
 	@Quando("^clicar em cadastrar novo usuário$")
 	public void clicar_em_cadastrar_novo_usuário() {
-		cadastro.clicarCadastrar();
+		login.clicarCadastrar();
 	}
 
 	@Dado("^preenche formulario de cadastro sucesso$")
@@ -87,7 +91,7 @@ public class CadastrarUsuarioStep {
 
 	@Então("^Valida usuário cadastrardo com sucesso$")
 	public void valida_usuário_cadastrardo_com_sucesso() throws Exception {
-		cadastro.clicarMenu();
+		home.clicarMenu();
 		dados.setNomeUsuario(nomeUsuario);
 		Assert.assertTrue("Usuário cadastrado com sucesso",
 				cadastro.validaCadastro().equals(dados.getNomeUsuarioExcel()));
