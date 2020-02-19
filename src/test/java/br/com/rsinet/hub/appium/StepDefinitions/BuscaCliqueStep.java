@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 
 import br.com.rsinet.hub.appium.CucumberTest.TestContext;
 import br.com.rsinet.hub.appium.ScreenObject.PageBusca;
-import br.com.rsinet.hub.appium.ScreenObject.PageCadastro;
 import br.com.rsinet.hub.appium.Utility.Constant;
 import br.com.rsinet.hub.appium.Utility.ExcelUtils;
 import br.com.rsinet.hub.appium.Utility.MassaDados;
@@ -19,7 +18,6 @@ public class BuscaCliqueStep {
 	private AndroidDriver<WebElement> driver;
 	private PageBusca busca;
 	private MassaDados dados;
-	private PageCadastro cadastro;
 	private TestContext testContext;
 
 	public BuscaCliqueStep(TestContext context) throws Exception {
@@ -31,7 +29,6 @@ public class BuscaCliqueStep {
 	public void que_o_usuário_esteja_na_tela_principal_clique() throws Throwable {
 
 		busca = new PageBusca(driver);
-		cadastro = new PageCadastro(driver);
 		dados = new MassaDados();
 	}
 
@@ -67,7 +64,6 @@ public class BuscaCliqueStep {
 
 	@Então("^Valida produto não encontrado pelos filtro$")
 	public void valida_produto_não_encontrado_pelos_filtro() {
-		//System.out.println(busca.mensagemProdutoClique());
 		Assert.assertTrue("Produto não encontrado", busca.mensagemProdutoClique().equals("- No results -"));
 	}
 }
